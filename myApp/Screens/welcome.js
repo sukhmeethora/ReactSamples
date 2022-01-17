@@ -8,8 +8,7 @@ import {
   StyleSheet,
 } from 'react-native';
 import {connect} from 'react-redux';
-import {nameChange} from './actions/detail';
-
+import {nameChange} from '../actions/detail';
 class Welcome extends Component {
   constructor(props) {
     super(props);
@@ -18,7 +17,7 @@ class Welcome extends Component {
 
   navigateToCustomButton = () => {
     console.log('nav called', this.props.navigation);
-    this.props.navigation.navigate('CustomButtons', {name: this.props.name});
+    this.props.navigation.navigate('CustomButtons', {name: 'default'});
   };
 
   render() {
@@ -37,6 +36,7 @@ class Welcome extends Component {
     );
   }
 }
+
 const mapStateToProps = state => {
   console.log(state);
   let {name} = state;

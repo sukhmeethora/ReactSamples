@@ -4,13 +4,13 @@ import {connect} from 'react-redux';
 import {nameChange} from './actions/detail';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import welcome from './welcome';
-import customButton from './customButton';
+import welcome from './Screens/welcome';
+import customButton from './Screens/customButton';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import DeviceInfo from 'react-native-device-info';
+import {NativeModules} from 'react-native';
 
 const Stack = createNativeStackNavigator();
-
 class App extends Component {
   constructor(props) {
     super(props);
@@ -18,6 +18,15 @@ class App extends Component {
   }
 
   componentDidMount() {
+    console.log(NativeModules.NativeModuleManager);
+
+    // Calling a method
+    NativeModules.NativeModuleManager.doSomethingInNative();
+
+    // Calling a rounte & get response back
+    NativeModules.NativeModuleManager.doSomethingGiveBack(message => {
+      console.log(message);
+    });
     DeviceInfo.isEmulator().then(_isEmulator => {
       // false
       if (_isEmulator) {

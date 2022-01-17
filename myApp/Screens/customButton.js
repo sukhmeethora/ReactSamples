@@ -12,8 +12,9 @@ import {
   SliderBase,
 } from 'react-native';
 import {connect} from 'react-redux';
-import {nameChange} from './actions/detail';
+import {nameChange} from '../actions/detail';
 import Slider from 'react-native-slide-to-unlock';
+import PropTypes from 'prop-types';
 
 class CustomButton extends Component {
   constructor(props) {
@@ -66,6 +67,15 @@ class CustomButton extends Component {
     );
   }
 }
+
+CustomButton.defaultProps = {
+  name: '',
+};
+
+CustomButton.propTypes = {
+  name: PropTypes.string,
+};
+
 const mapStateToProps = state => {
   console.log(state);
   let {name} = state;
